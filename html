@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>تفاصيل الفيلم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div style="padding:40px;" id="movie-details"></div>
+
+<script>
+const movies = JSON.parse(localStorage.getItem("moviesData")) || [
+    {
+        title: "Inception",
+        image: "https://via.placeholder.com/300x450?text=Inception",
+        year: 2010,
+        rating: "8.8",
+        link: "https://www.netflix.com/"
+    }
+];
+
+let title = localStorage.getItem("movieTitle");
+let movie = movies.find(m => m.title === title);
+
+document.getElementById("movie-details").innerHTML = `
+    <h1>${movie.title}</h1>
+    <img src="${movie.image}" style="width:200px;border-radius:10px;">
+    <p>السنة: ${movie.year}</p>
+    <p>التقييم: ⭐ ${movie.rating}</p>
+    <a href="${movie.link}" style="color:red;font-size:20px;" target="_blank">
+        مشاهدة قانونية
+    </a>
+`;
+</script>
+
+</body>
+</html>
